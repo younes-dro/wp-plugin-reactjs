@@ -11,7 +11,7 @@ npm install -g webpack-cli
 ```
 
 ## Installation
-1. Clone the repository to the Plugins directory of your WordPress installation: / wp-content / plugins / .
+1. Clone the repository to the Plugins directory of your WordPress installation: ` / wp-content / plugins / ` .
 
 2.  Install the dependencies : 
 ```
