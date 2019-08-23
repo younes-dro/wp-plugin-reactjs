@@ -1,7 +1,7 @@
 {
   "name": "wp-plugin-reactjs",
   "version": "1.0.0",
-  "description": "a WordPress starter plugin for those who want to use ReactJs in the development of WordPress Plugins.",
+  "description": "A WordPress starter plugin for those who want to use ReactJs in the development of WordPress Plugins.",
   "main": "app.js",
   "dependencies": {},
   "devDependencies": {
@@ -33,4 +33,3 @@
   },
   "homepage": "https://github.com/younes-dro/wp-plugin-reactjs#readme"
 }
-
