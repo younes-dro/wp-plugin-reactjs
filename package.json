@@ -3,18 +3,6 @@
   "version": "1.0.0",
   "description": "a WordPress starter plugin for those who want to use ReactJs in the development of WordPress Plugins.",
   "main": "app.js",
-  "dependencies": {
-    "babel-loader": "^8.0.6",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test {
-  "name": "wp-plugin-reactjs",
-  "version": "1.0.0",
-  "description": "A WordPress starter plugin for those who want to use ReactJs in the development of WordPress Plugins.",
-  "main": "app.js",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -45,21 +33,4 @@
   },
   "homepage": "https://github.com/younes-dro/wp-plugin-reactjs#readme"
 }
-specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/younes-dro/wp-plugin-reactjs.git"
-  },
-  "keywords": [
-    "wordpress",
-    "ReactJs",
-    "Plugin"
-  ],
-  "author": "Younes DRO",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/younes-dro/wp-plugin-reactjs/issues"
-  },
-  "homepage": "https://github.com/younes-dro/wp-plugin-reactjs#readme"
-}
+
