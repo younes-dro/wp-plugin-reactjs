@@ -1,14 +1,25 @@
 # Starter WordPress Plugin ReactJS
-### Installation
+A ready-to-use WordPress Plugin makes it easy to integrate React JS into the development of a WordPress Plugin.
+you can create your JSX components and turn them into Javascript which will be enqueue by WordPress.
 
-wp-plugin-reacjs requires [Node.js](https://nodejs.org/)
+## Requirements
 
-install webpack4 and webpack-cli global.
-
-clone the repo.
-
-```sh
-$ cd wp-plugin-js
-$ npm install
-$ webpack
+Install the  module bundler Webpack v4+ , webpack-cli  ***globally***.
 ```
+npm install -g webpack
+npm install -g webpack-cli
+```
+
+## Installation
+1. Clone the repository to the Plugins directory of your WordPress installation: / wp-content / plugins / .
+
+2.  Install the dependencies : 
+```
+  $ npm install
+```
+3. run webpack  () : 
+```
+  $ webpack
+```
+** and that's all ! **  you will have a new directory at the root of your plugin: `dist` which contains the compiled javascript file.
+now you can create your JSX components, and when you're ready, rerun ``` $ webpack```. 
