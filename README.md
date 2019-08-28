@@ -11,15 +11,19 @@ npm install -g webpack-cli
 ```
 
 ## Installation
-1. Clone the repository to the Plugins directory of your WordPress installation: / wp-content / plugins / .
+1. Clone the repository to the Plugins directory of your WordPress installation: ` / wp-content / plugins / ` .
 
-2.  Install the dependencies : 
+2.  Install the dependencies :
 ```
   $ npm install
 ```
-3. run webpack  () : 
+3. run webpack  :
 ```
   $ webpack
 ```
-** and that's all ! **  you will have a new directory at the root of your plugin: `dist` which contains the compiled javascript file.
-now you can create your JSX components, and when you're ready, rerun ``` $ webpack```. 
+**and that's all!** :+1:  you will have a new directory at the root of your plugin: `dist` which contains the compiled javascript file.
+now you can create your JSX components, and when you're ready, rerun ``` $ webpack```.
+
+## View
+
+the Plugin create a menu entry in `  Settings->WP  ` Plugin React, visit this page to see the result.
