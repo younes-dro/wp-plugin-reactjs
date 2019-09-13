@@ -26,4 +26,4 @@ now you can create your JSX components, and when you're ready, rerun ``` $ webpa
 
 ## View
 
-the Plugin create a menu entry in `  Settings->WP  ` Plugin React, visit this page to see the result.
+the Plugin create a menu entry in `  Settings->WP  Plugin React ` , visit this page to see the result.
