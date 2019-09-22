@@ -4,10 +4,10 @@
   "description": "A WordPress starter plugin for those who want to use ReactJs in the development of WordPress Plugins.",
   "main": "app.js",
   "dependencies": {
-      "react": "^16.9.0",
-    "react-dom": "^16.9.0"
   },
   "devDependencies": {
+          "react": "^16.9.0",
+    "react-dom": "^16.9.0"
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
