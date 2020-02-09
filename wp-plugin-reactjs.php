@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: WordPress Plugin ReactJS
-Plugin URI: http://www.
-Description:
-Version:
+Plugin URI: https://github.com/younes-dro/wp-plugin-reactjs
+Description: A WordPress Plugin starter for developers who want to use ReactJS in the development of WordPress Plugins.
+Version:1.0.0
 Author: Younes DRO
-Author URI: http://www.
+Author URI: http:https://dro.123.fr/
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain:
+Text Domain:wp-plugin-reactjs
 Domain Path: /languages
 */
 
