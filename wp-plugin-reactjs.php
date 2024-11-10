@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: WordPress Plugin ReactJS
  * Plugin URI: https://github.com/younes-dro/wp-plugin-reactjs
@@ -11,10 +10,12 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: dro-wp-plugin-reactjs
  * Domain Path: /languages
+ *
+ * @package WP_Plugin_ReactJS
  */
 
 /*
-  Copyright 2019 Younes DRO (email : younesdro at gmail.com)
+	Copyright 2019 Younes DRO (email : younesdro at gmail.com)
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation; either version 2 of the License, or
@@ -30,7 +31,7 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-// Make sure we don't expose any info if called directly
+// Make sure we don't expose any info if called directly.
 if ( ! function_exists( 'add_action' ) ) {
 	exit;
 }
@@ -89,8 +90,7 @@ function dro_enqueue_script() {
 		'dro-plugin-reactjs',
 		plugins_url( '/dist/public/bundle.js', __FILE__ ),
 		array( 'wp-element', 'wp-components' ),
-		time(), // Version (can use the current datetime in production env)
+		time(), // Version (can use the current datetime in production env).
 		true
 	);
 }
-
