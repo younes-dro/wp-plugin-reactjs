@@ -1,89 +1,110 @@
+
 # Starter WordPress Plugin ReactJS
 
-A ready-to-use WordPress Plugin makes it easy to integrate React JS into the development of a WordPress Plugin.
+A ready-to-use WordPress Plugin that makes it easy to integrate React JS into the development of a WordPress Plugin. You can create your JSX components and compile them into JavaScript, which will be enqueued by WordPress.
 
-you can create your JSX components and turn them into Javascript which will be enqueue by WordPress.
-
-  
+---
 
 ## Requirements
 
-  
+Install the module bundler Webpack v5+ and webpack-cli ***globally***:
 
-Install the module bundler Webpack v4+ , webpack-cli ***globally***.
-
-```
-
+```bash
 npm install -g webpack
-
 npm install -g webpack-cli
-
 ```
 
-  
+---
 
 ## Installation
 
-1. Clone the repository to the Plugins directory of your WordPress installation: ` / wp-content / plugins / ` .
+1. Clone the repository to the Plugins directory of your WordPress installation: `/wp-content/plugins/`.
 
-  
+2. Install the dependencies:
 
-2. Install the dependencies :
+   ```bash
+   npm install
+   ```
 
-```
+3. Use the provided npm scripts to build the project:
 
-$ npm install
+   - **For development**:
+     ```bash
+     npm run dev
+     ```
+     This will generate the `public/bundle.js` file with source maps for debugging.
 
-```
+   - **For production**:
+     ```bash
+     npm run build
+     ```
+     This will generate the optimized and minified `dist/public/bundle.js` file.
 
-3. run webpack :
+   - **To watch for file changes**:
+     ```bash
+     npm run watch
+     ```
+     Automatically rebuilds the development bundle when changes are detected.
 
-```
+   - **To clean the output**:
+     ```bash
+     npm run clean
+     ```
+     Removes old build files from the `public/` and `dist/public/` directories.
 
-$ webpack
-
-```
-
-**and that's all!** :+1: you will have a new directory at the root of your plugin: `dist` which contains the compiled javascript file.
-
-now you can create your JSX components, and when you're ready, rerun ``` $ webpack```.
-
-  
+---
 
 ## View
 
-  
+The plugin creates a menu entry under `Tools -> WP Plugin React`. Visit this page to see the result of your React components.
 
-The Plugin create a menu entry in ` Tools->WP Plugin React ` , visit this page to see the result.
 ![](https://raw.githubusercontent.com/younes-dro/assets/a4636d6b87658d5e732f462f32e864a7d28ee631/dro-wp-plugin-js.png)
-## Troubleshooting
 
-  
+---
+
+## Features
+
+1. **Dynamic Script Loading**:
+   - Automatically loads the appropriate script (`public/bundle.js` for development, `dist/public/bundle.js` for production) based on the `SCRIPT_DEBUG` constant in your `wp-config.php` file.
+
+2. **React 18 Compatibility**:
+   - Supports React 18 and uses `ReactDOM.createRoot` for rendering.
+
+3. **Flexible Build System**:
+   - Includes `dev`, `build`, `clean`, and `watch` npm scripts for easy development and deployment.
+
+4. **Automatic Cache Busting**:
+   - Uses `filemtime()` to version scripts dynamically based on their last modification time, ensuring browsers always load the latest version.
+
+---
+
+## Troubleshooting
 
 ### Script Execution Policy Error in PowerShell
 
-  
-
-If you encounter an error related to the script execution policy when running `webpack` in PowerShell, you may need to adjust the execution policy. This error typically looks like:
-
-  
+If you encounter an error related to the script execution policy when running `webpack` in PowerShell, the error typically looks like:
 
 ```plaintext
-
 webpack: Unable to load the file C:\Users\YourUsername\AppData\Roaming\npm\webpack.ps1 because
-
 script execution is disabled on this system.
+```
 
-  
-
-Solution:
+**Solution**:
 
 1. Open PowerShell as an administrator.
-
 2. Run the following command to set the execution policy for the current user:
 
-  
+   ```powershell
+   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+   ```
 
-```powershell
+---
 
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+## Workflow
+
+1. Edit your React components in the `src/components/` directory.
+2. Use `npm run dev` during development for faster builds.
+3. Use `npm run build` to generate a production-ready bundle.
+4. Visit the `Tools -> WP Plugin React` page to see your changes in action.
+
+---
