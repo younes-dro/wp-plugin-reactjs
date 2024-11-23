@@ -85,12 +85,22 @@ add_action( 'admin_enqueue_scripts', 'dro_enqueue_script' );
  * @return void
  */
 function dro_enqueue_script() {
+    
+    $is_dev = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
 
-	wp_enqueue_script(
-		'dro-plugin-reactjs',
-		plugins_url( '/dist/public/bundle.js', __FILE__ ),
-		array( 'wp-element', 'wp-components' ),
-		time(), // Version (can use the current datetime in production env).
-		true
-	);
+
+    $bundle_path = $is_dev 
+        ? plugins_url( '/public/bundle.js', __FILE__ ) // Development bundle
+        : plugins_url( '/dist/public/bundle.js', __FILE__ ); // Production bundle
+
+	$version = file_exists( $bundle_path ) ? filemtime( $bundle_path ) : time();
+
+    wp_enqueue_script(
+        'dro-plugin-reactjs',
+        $bundle_path,
+        array( 'wp-element', 'wp-components' ),
+        $version,
+        true 
+    );
 }
+
