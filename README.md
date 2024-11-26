@@ -108,16 +108,54 @@ The plugin creates a menu entry under `Tools -> WP Plugin React`. Visit this pag
      };
      ```
 
-3. **Dynamic Script Loading**:
+3. **Dynamic Configurations**:
+   - Supports dynamic plugin configurations using a centralized `src/config.js` file.
+   - Merges static defaults with dynamic values provided by WordPress via `wp_localize_script`.
+
+   **Example**:
+
+   - Static Config (`src/config.js`):
+     ```javascript
+     const defaultConfig = {
+         apiBaseUrl: "https://example.com/wp-json",
+         featureToggles: { enableExperimentalFeature: false },
+         appVersion: "1.0.0",
+     };
+
+     const dynamicConfig = window.wpPluginReactConfig || {};
+     const config = { ...defaultConfig, ...dynamicConfig };
+
+     export default config;
+     ```
+
+   - Dynamic Config (`wp-plugin-reactjs.php`):
+     ```php
+     wp_localize_script( 'dro-plugin-reactjs', 'wpPluginReactConfig', array(
+         'apiBaseUrl' => get_rest_url(),
+         'featureToggles' => array(
+             'enableExperimentalFeature' => true,
+         ),
+         'appVersion' => '1.0.1',
+     ) );
+     ```
+
+   - Usage in Components:
+     ```javascript
+     import config from "../config";
+
+     console.log(config.apiBaseUrl); // Access dynamic configurations
+     ```
+
+4. **Dynamic Script Loading**:
    - Automatically loads the appropriate script (`public/bundle.js` for development, `dist/public/bundle.js` for production) based on the `SCRIPT_DEBUG` constant in your `wp-config.php` file.
 
-4. **React 18 Compatibility**:
+5. **React 18 Compatibility**:
    - Supports React 18 and uses `ReactDOM.createRoot` for rendering.
 
-5. **Flexible Build System**:
+6. **Flexible Build System**:
    - Includes `dev`, `build`, `clean`, and `watch` npm scripts for easy development and deployment.
 
-6. **Automatic Cache Busting**:
+7. **Automatic Cache Busting**:
    - Uses `filemtime()` to version scripts dynamically based on their last modification time, ensuring browsers always load the latest version.
 
 ---
@@ -151,6 +189,7 @@ script execution is disabled on this system.
 3. Use `npm run build` to generate a production-ready bundle.
 4. Dynamically register components in `src/registry/registerComponents.js` or add your own.
 5. Use the `AppContext` for global state management across your components.
-6. Visit the `Tools -> WP Plugin React` page to see your changes in action.
+6. Configure plugin settings in `src/config.js` and pass dynamic values from WordPress using `wp_localize_script`.
+7. Visit the `Tools -> WP Plugin React` page to see your changes in action.
 
 ---
