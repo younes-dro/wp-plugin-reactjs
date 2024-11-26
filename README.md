@@ -64,16 +64,36 @@ The plugin creates a menu entry under `Tools -> WP Plugin React`. Visit this pag
 
 ## Features
 
-1. **Dynamic Script Loading**:
+1. **Dynamic Component Loading**:
+   - Allows developers to register and dynamically load React components without modifying the plugin core.
+   - Uses a centralized registry (`src/registry/componentRegistry.js`) to manage components.
+   - Provides the `DynamicLoader` component to load components based on their names.
+   - Includes example components (`DefaultComponent` and `CustomComponent`) to demonstrate the functionality.
+
+   **Example**:
+   - To register a component:
+     ```javascript
+     import { registerComponent } from "./src/registry/componentRegistry";
+     import MyComponent from "./src/components/MyComponent";
+
+     registerComponent("MyComponent", MyComponent);
+     ```
+
+   - To load and render a component dynamically:
+     ```javascript
+     <DynamicLoader componentName="MyComponent" />
+     ```
+
+2. **Dynamic Script Loading**:
    - Automatically loads the appropriate script (`public/bundle.js` for development, `dist/public/bundle.js` for production) based on the `SCRIPT_DEBUG` constant in your `wp-config.php` file.
 
-2. **React 18 Compatibility**:
+3. **React 18 Compatibility**:
    - Supports React 18 and uses `ReactDOM.createRoot` for rendering.
 
-3. **Flexible Build System**:
+4. **Flexible Build System**:
    - Includes `dev`, `build`, `clean`, and `watch` npm scripts for easy development and deployment.
 
-4. **Automatic Cache Busting**:
+5. **Automatic Cache Busting**:
    - Uses `filemtime()` to version scripts dynamically based on their last modification time, ensuring browsers always load the latest version.
 
 ---
@@ -105,6 +125,7 @@ script execution is disabled on this system.
 1. Edit your React components in the `src/components/` directory.
 2. Use `npm run dev` during development for faster builds.
 3. Use `npm run build` to generate a production-ready bundle.
-4. Visit the `Tools -> WP Plugin React` page to see your changes in action.
+4. Dynamically register components in `src/registry/registerComponents.js` or add your own.
+5. Visit the `Tools -> WP Plugin React` page to see your changes in action.
 
 ---
