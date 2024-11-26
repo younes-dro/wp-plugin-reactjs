@@ -102,5 +102,14 @@ function dro_enqueue_script() {
         $version,
         true 
     );
+
+    // Localize dynamic settings
+    wp_localize_script( 'dro-plugin-reactjs', 'wpPluginReactConfig', array(
+        'apiBaseUrl' => get_rest_url(), // Dynamic API Base URL
+        'featureToggles' => array(
+            'enableExperimentalFeature' => true, // Example toggle
+        ),
+        'appVersion' => '1.0.1', // Dynamic app version
+    ) );	
 }
 
