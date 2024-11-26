@@ -84,16 +84,40 @@ The plugin creates a menu entry under `Tools -> WP Plugin React`. Visit this pag
      <DynamicLoader componentName="MyComponent" />
      ```
 
-2. **Dynamic Script Loading**:
+2. **React Context API for Global State Management**:
+   - Provides a global state management solution using React's Context API.
+   - Includes a generic `AppContext` and `AppProvider` for managing state across components.
+   - Demonstrates how to update and consume global state using the `DefaultComponent`.
+
+   **Example**:
+   - To use the Context API in a component:
+     ```javascript
+     import React, { useContext } from "react";
+     import { AppContext } from "../context/AppContext";
+
+     const MyComponent = () => {
+         const { state, updateState } = useContext(AppContext);
+         return (
+             <div>
+                 <p>Current Value: {state.exampleKey}</p>
+                 <button onClick={() => updateState("exampleKey", "New Value")}>
+                     Update Value
+                 </button>
+             </div>
+         );
+     };
+     ```
+
+3. **Dynamic Script Loading**:
    - Automatically loads the appropriate script (`public/bundle.js` for development, `dist/public/bundle.js` for production) based on the `SCRIPT_DEBUG` constant in your `wp-config.php` file.
 
-3. **React 18 Compatibility**:
+4. **React 18 Compatibility**:
    - Supports React 18 and uses `ReactDOM.createRoot` for rendering.
 
-4. **Flexible Build System**:
+5. **Flexible Build System**:
    - Includes `dev`, `build`, `clean`, and `watch` npm scripts for easy development and deployment.
 
-5. **Automatic Cache Busting**:
+6. **Automatic Cache Busting**:
    - Uses `filemtime()` to version scripts dynamically based on their last modification time, ensuring browsers always load the latest version.
 
 ---
@@ -126,6 +150,7 @@ script execution is disabled on this system.
 2. Use `npm run dev` during development for faster builds.
 3. Use `npm run build` to generate a production-ready bundle.
 4. Dynamically register components in `src/registry/registerComponents.js` or add your own.
-5. Visit the `Tools -> WP Plugin React` page to see your changes in action.
+5. Use the `AppContext` for global state management across your components.
+6. Visit the `Tools -> WP Plugin React` page to see your changes in action.
 
 ---
