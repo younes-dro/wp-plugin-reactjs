@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { AppProvider } from "./src/context/AppContext"; // Import the generic Provider
-import DynamicLoader from "./src/registry/DynamicLoader";
-import "./src/registry/registerComponents";
+import Container from "./src/components/Container";
+import './src/registry/registerComponents'
 
 document.addEventListener("DOMContentLoaded", () => {
     const rootElement = document.getElementById("main");
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         root.render(
             <AppProvider>
-                <DynamicLoader componentName="Default" />
+                <Container />
             </AppProvider>
         );
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import config from "../config";
 
-const DefaultComponent = () => {
+const Default = () => {
     return (
         <div style={{ padding: "20px", border: "1px solid #ccc", borderRadius: "5px" }}>
             <h2>Default Component</h2>
@@ -15,4 +15,4 @@ const DefaultComponent = () => {
     );
 };
 
-export default DefaultComponent;
+export default Default;
