@@ -1,9 +1,9 @@
 import { registerComponent } from "./componentRegistry";
-import DefaultComponent from "../components/DefaultComponent";
-import CustomComponent from "../components/CustomComponent";
+import Default from "../components/DefaultComponent"
+import PostFetcher from "../components/PostFetcher";
 
-// Register default components
-registerComponent("Default", DefaultComponent);
-registerComponent("Custom", CustomComponent);
+// Register components
+registerComponent("Default", Default);
+registerComponent("PostFetcher", PostFetcher);
 
 // You can extend this file to register more components
