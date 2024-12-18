@@ -7,6 +7,9 @@ node_modules/
 # production
 /dist
 
+# Ignore dynamically generated bundle.js
+/public/bundle.js
+
 # misc
 .DS_Store
 .env.local

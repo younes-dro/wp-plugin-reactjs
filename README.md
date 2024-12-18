@@ -64,17 +64,88 @@ The plugin creates a menu entry under `Tools -> WP Plugin React`. Visit this pag
 
 ## Features
 
-1. **Dynamic Script Loading**:
-   - Automatically loads the appropriate script (`public/bundle.js` for development, `dist/public/bundle.js` for production) based on the `SCRIPT_DEBUG` constant in your `wp-config.php` file.
+1. **Container Component for Dynamic Component Management**:
+   - Introduces a `Container` component that dynamically loads and renders multiple components in a structured layout.
+   - Works seamlessly with the `DynamicLoader` to fetch and render components from the centralized registry.
 
-2. **React 18 Compatibility**:
-   - Supports React 18 and uses `ReactDOM.createRoot` for rendering.
+   **How It Works:**
+   - The `Container` defines a list of component names:
+     ```javascript
+     const componentsToLoad = ["Default", "PostFetcher"];
+     ```
+   - Each component is dynamically loaded using `DynamicLoader`.
 
-3. **Flexible Build System**:
+   **Example: Adding a New Component**
+   1. Create your component in the `src/components/` directory:
+      ```javascript
+      const MyNewComponent = () => <div>Hello from MyNewComponent!</div>;
+      export default MyNewComponent;
+      ```
+   2. Register it in `src/registry/registerComponents.js`:
+      ```javascript
+      import { registerComponent } from "./componentRegistry";
+      import MyNewComponent from "../components/MyNewComponent";
+
+      registerComponent("MyNewComponent", MyNewComponent);
+      ```
+   3. Add the component name to `componentsToLoad` in `Container.jsx`:
+      ```javascript
+      const componentsToLoad = ["Default", "PostFetcher", "MyNewComponent"];
+      ```
+
+2. **Dynamic Component Loading**:
+   - Allows developers to register and dynamically load React components without modifying the plugin core.
+   - Uses a centralized registry (`src/registry/componentRegistry.js`) to manage components.
+   - The `DynamicLoader` component loads components by their registered names.
+
+   **Example: Registering a Component**
+   ```javascript
+   import { registerComponent } from "./src/registry/componentRegistry";
+   import MyComponent from "./src/components/MyComponent";
+
+   registerComponent("MyComponent", MyComponent);
+   ```
+
+   **Dynamic Loading Example:**
+   ```javascript
+   <DynamicLoader componentName="MyComponent" />
+   ```
+
+3. **React Context API for Global State Management**:
+   - Provides a global state management solution using React's Context API.
+   - Includes a generic `AppContext` and `AppProvider` for managing state across components.
+
+   **Example: Using Context API in a Component**
+   ```javascript
+   import React, { useContext } from "react";
+   import { AppContext } from "../context/AppContext";
+
+   const MyComponent = () => {
+       const { state, updateState } = useContext(AppContext);
+       return (
+           <div>
+               <p>Current Value: {state.exampleKey}</p>
+               <button onClick={() => updateState("exampleKey", "New Value")}>
+                   Update Value
+               </button>
+           </div>
+       );
+   };
+   ```
+
+4. **Dynamic Configurations**:
+   - Supports dynamic plugin configurations using a centralized `src/config.js` file.
+   - Merges static defaults with dynamic values provided by WordPress via `wp_localize_script`.
+
+   **Usage Example:**
+   ```javascript
+   import config from "../config";
+
+   console.log(config.apiBaseUrl); // Access dynamic configurations
+   ```
+
+5. **Flexible Build System**:
    - Includes `dev`, `build`, `clean`, and `watch` npm scripts for easy development and deployment.
-
-4. **Automatic Cache Busting**:
-   - Uses `filemtime()` to version scripts dynamically based on their last modification time, ensuring browsers always load the latest version.
 
 ---
 
@@ -103,8 +174,11 @@ script execution is disabled on this system.
 ## Workflow
 
 1. Edit your React components in the `src/components/` directory.
-2. Use `npm run dev` during development for faster builds.
-3. Use `npm run build` to generate a production-ready bundle.
-4. Visit the `Tools -> WP Plugin React` page to see your changes in action.
+2. Register new components in `src/registry/registerComponents.js`.
+3. Use the `Container` to dynamically render multiple components.
+4. Use `npm run dev` during development for faster builds.
+5. Use `npm run build` to generate a production-ready bundle.
+6. Configure plugin settings in `src/config.js` and pass dynamic values from WordPress using `wp_localize_script`.
+7. Visit the `Tools -> WP Plugin React` page to see your changes in action.
 
 ---

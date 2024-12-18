@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./src/components/app.jsx";
+import { AppProvider } from "./src/context/AppContext"; // Import the generic Provider
+import Container from "./src/components/Container";
+import './src/registry/registerComponents'
 
-// Ensure React renders only after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     const rootElement = document.getElementById("main");
+
     if (rootElement) {
         const root = ReactDOM.createRoot(rootElement);
-        root.render(<App />);
-    } else {
-        console.error("Target container #main not found!");
+
+        root.render(
+            <AppProvider>
+                <Container />
+            </AppProvider>
+        );
     }
 });
